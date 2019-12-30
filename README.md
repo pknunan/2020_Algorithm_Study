@@ -1,15 +1,25 @@
  Study2020-1
  ----------
- 정렬1 1/9
+[1.정렬](https://github.com/pknunan/Study2020-1/tree/master/1.%EC%A0%95%EB%A0%AC)
 
- 정렬2 1/16 
+[2.검색트리](https://github.com/pknunan/Study2020-1/tree/master/2.%EA%B2%80%EC%83%89%ED%8A%B8%EB%A6%AC)
 
- 검색트리1 1/30
+[3.그래프](https://github.com/pknunan/Study2020-1/tree/master/3.%EA%B7%B8%EB%9E%98%ED%94%84)
 
- 검색트리2 2/6
 
- 그래프 알고리즘 1 2/13
+강의바로가기
+-------
 
- 그래프 알고리즘 2 2/20
+[1주차(1~3)](https://www.youtube.com/watch?v=0dG7xTt5IfQ&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=8)
 
- 그래프 알고리즘 3 2/27
+[2주차(4~8)](https://www.youtube.com/watch?v=ihyg2OR8IR0&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=11)
+
+[3주차(1~4)](https://www.youtube.com/watch?v=TdakkF5Xh6o&index=19&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l)
+
+[4주차(5~7)](https://www.youtube.com/watch?v=gF20ZSplxZE&index=23&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&t=7s)
+
+[5주차(1~4)](https://www.youtube.com/watch?v=hiW1KAyN1sc)
+
+[6주차(3.1~3.4)](https://www.youtube.com/watch?v=i4ZDgJS0_yM&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=33)
+
+[7주차(4.1~4.3)](https://www.youtube.com/watch?v=QH-Btq8SgLQ&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=37)
