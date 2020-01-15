@@ -10,11 +10,11 @@
 강의바로가기
 -------
 
-[1주차(1~3) 1월9일](https://www.youtube.com/watch?v=0dG7xTt5IfQ&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=8)
+[1주차(Quick Sort 까지) 1월9일](https://www.youtube.com/watch?v=0dG7xTt5IfQ&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=8)
 
-[2주차(4~8) 1월16일](https://www.youtube.com/watch?v=ihyg2OR8IR0&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=11)
+[2주차(Java에서의 정렬까지) 1월16일](https://www.youtube.com/watch?v=ihyg2OR8IR0&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=11)
 
-[3주차(1~4) 2월6일](https://www.youtube.com/watch?v=TdakkF5Xh6o&index=19&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l)
+[3주차(1) 2월6일](https://www.youtube.com/watch?v=TdakkF5Xh6o&index=19&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l)
 
 [4주차(5~7) 2월13일](https://www.youtube.com/watch?v=gF20ZSplxZE&index=23&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&t=7s)
 
