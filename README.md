@@ -14,12 +14,12 @@
 
 [2주차(Java에서의 정렬까지) 1월16일](https://www.youtube.com/watch?v=ihyg2OR8IR0&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=11)
 
-[3주차(1) 2월6일](https://www.youtube.com/watch?v=TdakkF5Xh6o&index=19&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l)
+[3주차(11-3강 까지) 2월6일](https://www.youtube.com/watch?v=TdakkF5Xh6o&index=19&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l)
 
-[4주차(5~7) 2월13일](https://www.youtube.com/watch?v=gF20ZSplxZE&index=23&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&t=7s)
+[4주차(12-3강 까지) 2월13일](https://www.youtube.com/watch?v=gF20ZSplxZE&index=23&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&t=7s)
 
-[5주차(1~4) 2월20일](https://www.youtube.com/watch?v=hiW1KAyN1sc)
+[5주차(14-1그래프 ~ 14-4 DAG) 2월20일](https://www.youtube.com/watch?v=hiW1KAyN1sc)
 
-[6주차(3.1~3.4)2월27일](https://www.youtube.com/watch?v=i4ZDgJS0_yM&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=33)
+[6주차(15-1~15-4최소비용신장트리)2월27일](https://www.youtube.com/watch?v=i4ZDgJS0_yM&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=33)
 
-[7주차(4.1~4.3)](https://www.youtube.com/watch?v=QH-Btq8SgLQ&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=37)
+[7주차(16-1~16-3최단경로)](https://www.youtube.com/watch?v=QH-Btq8SgLQ&list=PL52K_8WQO5oUuH06MLOrah4h05TZ4n38l&index=37)
