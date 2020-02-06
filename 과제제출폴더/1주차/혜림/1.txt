@@ -1,0 +1,216 @@
+package section1;
+
+public class Code01 {
+
+   static int n1=1000;
+   static int n2=10000;
+   static int n3=100000;
+   static int Random1[]=new int[n1];
+   static int Reverse1[]=new int[n1];
+   static int Random2[]=new int[n2];
+   static int Reverse2[]=new int[n2];
+   static int Random3[]=new int[n3];
+   static int Reverse3[]=new int[n3];
+
+   public static void main(String[] args) {
+
+      Random(Random1, n1);
+      Reverse(Reverse1, n1);
+
+      Random(Random2, n2);
+      Reverse(Reverse2, n2);
+
+      Random(Random3, n3);
+      Reverse(Reverse3, n3);
+
+   }
+
+   public static void Random(int data[], int k) {
+
+      long start = System.currentTimeMillis();
+
+      for(int i=0;i<k;i++) 
+         data[i]=(int) (Math.floor(Math.random() * k) + 1);
+
+      Sort(data, k);
+      Sort_2(data, 0, k-1);
+
+      long finish = System.currentTimeMillis();
+      System.out.println( "Random"+k+"실행 시간 : " + ( finish - start )/1000.0 ); 
+
+   }
+
+   public static void Reverse(int data[], int k) {
+
+      long begin = System.currentTimeMillis();
+
+      int j=k;
+      for(int i=0;i<k;i++) {
+         data[i]=j;
+         j--;
+      }
+
+      Sort(data, k);
+      Sort_2(data, 0, k-1);
+
+      long end = System.currentTimeMillis();
+      System.out.println( "Reverse"+k+"실행 시간 : " + ( end - begin)/1000.0 ); 
+
+   }
+
+   public static void Sort(int A[], int n) {
+
+      bubbleSort(A, n);
+      selectionSort(A, n);
+      insertionSort(A, n);
+      heapSort(A, n);
+
+   }
+   public static void Sort_2(int A[], int p, int r) {
+      mergeSort(A, p, r);
+      quickSort(A, p, r);
+      
+   }
+   public static void bubbleSort(int A[], int n) {
+
+      for(int i=n-1;i>0;i--) {
+         for(int j=0;j<i;j++) {
+            if(A[j]>A[j+1]) {
+               int tmp=A[j];
+               A[j]=A[j+1];
+               A[j+1]=tmp;
+            }
+         }
+      }
+   }
+
+   public static void selectionSort(int A[], int n) {
+
+      for(int i=n-1;i>0;i--) {
+         int max=0;
+         for(int j=0;j<=i;j++) {
+            if(A[j]>max) {
+               max=A[j];
+            }
+         }
+         for(int k=0;k<i;k++) {
+            if(A[k]==max) {
+               int tmp=A[k];
+               A[k]=A[i];
+               A[i]=tmp;
+            }
+         }
+      }
+   }
+
+   public static void insertionSort(int A[],  int n) {
+      for(int i=0;i<n;i++) {
+         for(int j=i;j>0;j--) {
+            if(A[j-1]>A[j]) {
+               int tmp=A[j-1];
+               A[j-1]=A[j];
+               A[j]=tmp;
+            }
+         }
+      }
+   }
+
+   public static void mergeSort(int A[], int p, int r) {
+
+      if(p<r) {
+         int q=(p+r)/2;
+         mergeSort(A, p, q);
+         mergeSort(A, q+1,r);
+         merge(A, p, q, r);
+      }
+   }
+   public static void merge(int A[], int p, int q, int r) {
+
+      int i=p, j=q+1, k=p;
+      int tmp[]=new int [A.length];
+
+      while(i<=q&&j<=r) {
+         if(A[i]<=A[j])
+            tmp[k++]=A[i++];
+         else
+            tmp[k++]=A[j++];
+      }
+
+      while(i<=q)
+         tmp[k++]=A[i++];
+      while(j<=r)
+         tmp[k++]=A[j++];
+      for(i=p;i<=r;i++)
+         A[i]=tmp[i];
+   }
+   public static void quickSort(int A[], int p, int r) {
+
+      if(p<r) {
+         int q=partition(A, p, r);//pivot의 위치
+         quickSort(A, p, q-1);
+         quickSort(A, q+1, r);
+      }
+
+   }
+   public static int partition(int A[], int p, int r) {
+
+      int i=p-1;
+      int j=p;
+      int pivot=A[r];
+      while(j<r) {
+         if(A[j]>=pivot)
+            j++;
+         else {
+            i++;
+            int tmp=A[i];
+            A[i]=A[j];
+            A[j]=tmp;
+            j++;
+         }
+      }
+      int temp=A[i+1];
+      A[i+1]=A[r];
+      A[r]=temp;
+      return i+1;
+   }
+
+
+   public static void heapSort(int A[], int n) {
+
+      for(int i=n/2;i>=0;i--)
+         max_heapify(A, i, n-1);
+
+      for(int i=n;i>0;i--) {
+
+         int tmp=A[0];
+         A[0]=A[i];
+         A[0]=tmp;
+         max_heapify(A, 0, i-1);
+
+      }
+   }
+   public static void max_heapify(int A[], int left, int right) {
+
+      int tmp=A[left];
+      int child;
+      int parent;
+
+      if(2*left>A.length)//A[i]의 자식노드가 존재하지 않으면
+         return;
+
+      for(parent=left;parent<(right+1)/2;parent=child) {
+         int l=parent*2+1;
+         int r= l+1;
+
+         if(r<=right&&A[r]>A[l])
+            child=right;
+         else
+            child=left;
+
+         if(A[left]>=A[child])
+            break;
+         A[parent]=A[child];
+      }
+      A[parent]=tmp;
+   }
+}
