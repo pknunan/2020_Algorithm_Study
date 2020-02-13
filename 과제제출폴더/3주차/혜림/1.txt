@@ -1,0 +1,188 @@
+package tree;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+
+public class Main {
+
+   static int index=0;
+   static Line[] binary_tree =new Line[10000000];
+   static Scanner keyboard=new Scanner(System.in);
+
+   public static void main(String[] args) {
+      Scanner in;
+      try {
+         in = new Scanner(new File("shuffled_dict.txt"));
+         
+         while(in.hasNext()) {
+            
+            binary_tree[index++]= new Line(in.nextLine());
+         }
+         in.close();
+      } catch (FileNotFoundException e) {
+         System.out.println("No data file.");
+         System.exit(1);
+      }
+
+      
+      Scanner kb=new Scanner(System.in);
+      String command;
+      while(true) {
+         
+         System.out.println("$ ");
+         command=kb.next();
+         
+         BinaryTree binaryTree;
+         if(command.equals("size"))
+            System.out.println(index);
+         
+         else if(command.equals("find")) {
+            String word=kb.next();
+            Line a=BinaryTree.find(a);
+         }
+         
+         else if(command.equals("add")) {
+            System.out.print("word: ");
+            String w=kb.next();
+            System.out.print("class :");
+            String c=kb.next();
+            System.out.print("mean :");
+            String m=kb.next();
+            BinaryTree.add(w, c, m);
+         }
+      
+         else if(command.equals("delete")) {
+            String d=kb.next();
+            BinaryTree.delete(d);
+         }
+         
+         else if(command.equals("deleteall"))
+            BinaryTree.deleteall();
+      }
+      
+   }
+
+}
+public class Line {
+
+   public static String Word;
+   public static String Class;
+   public static String Meaning;
+   Line left=null;
+   Line right=null;
+   Line parent=null;
+
+   int n=0;
+   public int start=0;
+   public int end=0;
+   public static Line root;
+
+
+   public Line(String s) {
+      
+
+      while(n<=s.length()) {
+
+         if(s.charAt(n)=='(') 
+            start=n;
+
+         if(s.charAt(n)==')')
+            end=n;
+         n++;
+      }
+      
+      int count=0;
+      for(int i=0;s.charAt(i)!=' ';i++) 
+         count++;
+      
+      Word=s.substring(0,count);
+
+      Class=s.substring(start, end);
+      
+      Meaning=s.substring(end+2,s.length());
+      
+   }
+
+
+}
+import tree.OneNode.Line;
+
+public class BinaryTree {
+
+   protected Line root;//root 노드의 주소 보관
+   private Object left;
+   //다음 페이지부터 나오는 생성자 및 메서드들을 여기에 넣는다.
+   public BinaryTree() {
+      root=null;
+   }
+
+   public BinaryTree(Line root){
+      this.root=root;
+   }
+
+   public void BinaryTree(String data, Line BinaryTree, Line leftTree, Line rightTree) {
+      
+      root=new Line(data);
+
+      if(leftTree!=null)
+         root.left=leftTree.root;
+      else
+         root.left=null;
+
+      if(rightTree!=null)
+         root.right=rightTree.root; 
+      else
+         root.right=null;
+   }
+
+   public BinaryTree getLeftSubtree() {
+      
+      if(root!=null&&root.left!=null)
+         return new BinaryTree(root.left);
+      else
+         return null;
+   }
+
+   public BinaryTree getRightSubtree() {
+      if(root!=null&&root.right!=null)
+         return new BinaryTree(root.right);
+      else
+         return null;
+   }
+
+   public static tree.Line find(String a) {
+      
+      Line f=Line.root;
+      // TODO Auto-generated method stub
+      if(f==null||tree.Line.Word.compareTo(a)==0)
+         System.out.println(tree.Line.Meaning);
+      
+      while(f!=null) {
+         if(tree.Line.Word.compareTo(a)<0)
+            f=f.left;
+         else
+            f=f.right;
+            
+      }
+      return null;
+   }
+   public static tree.Line add(String w, String c, String m){
+   
+      Line first=this.root;
+      Line second=null;
+      
+      while(second!=null) {
+         
+      }
+   }
+   public static void delete(String d){
+      
+   }
+   public static void deleteall(){
+      
+      
+   }
+
+}
