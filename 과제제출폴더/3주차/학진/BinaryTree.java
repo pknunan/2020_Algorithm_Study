@@ -26,7 +26,7 @@ class Node {
              this.root = root;
          }
          public static boolean compareTo(String str1, String str2) {
-             if (str1.compareTo(str2) < 0)  //str1이 str2보다 큰경우
+             if (str1.compareTo(str2) > 0)  //str1이 str2보다 큰경우
                  return true;
              else
                  return false;    //str1이 str2보다 작은경우
