@@ -9,13 +9,23 @@ import java.util.Scanner;
 
 public class AreaFile {
 
-    private HashMap<String, Area> AreaList = new HashMap<>();
+    private HashMap<String, Area> AreaMap = new HashMap<>();
 
     public AreaFile() {
         init();
     }
 
     private void init() {
+        try {
+            addToMap();
+            connectEdges();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Successfully connect all edges.");
+    }
+
+    private void addToMap() {
         String path = "algorithm/src/algorithm_2019/resource/" + "alabama.txt";
         File file = new File(path);
 
@@ -29,15 +39,8 @@ public class AreaFile {
         if (fileScanner != null) {
             while (fileScanner.hasNextLine()) {
                 String[] line = fileScanner.nextLine().split("\t");
-                AreaList.put(line[0], new Area(line[0], Double.parseDouble(line[1]), Double.parseDouble(line[2])));
+                AreaMap.put(line[0], new Area(line[0], Double.parseDouble(line[1]), Double.parseDouble(line[2])));
             }
-
-            try {
-                connectEdges();
-            } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Successfully connect all edges.");
         }
     }
 
@@ -54,8 +57,8 @@ public class AreaFile {
         if (fileScanner != null) {
             while (fileScanner.hasNextLine()) {
                 String[] line = fileScanner.nextLine().split("\t");
-                connect(AreaList.get(line[0]), (Area) AreaList.get(line[1]).clone());
-                connect(AreaList.get(line[1]), (Area) AreaList.get(line[0]).clone());
+                connect(AreaMap.get(line[0]), (Area) AreaMap.get(line[1]).clone());
+                connect(AreaMap.get(line[1]), (Area) AreaMap.get(line[0]).clone());
             }
         }
     }
@@ -89,14 +92,14 @@ public class AreaFile {
     }
 
     public void closeAreaOf(String areaName) {
-        if (!AreaList.containsKey(areaName)) {
+        if (!AreaMap.containsKey(areaName)) {
             System.out.println("Wrong Area");
             return;
         }
 
         HashMap<String, Boolean> hashChk = new HashMap<>();
         Queue<Area> q = new LinkedList<>();
-        q.offer(AreaList.get(areaName));
+        q.offer(AreaMap.get(areaName));
         hashChk.put(areaName, true);
 
         int t = 0;
@@ -115,7 +118,7 @@ public class AreaFile {
     private void offerAllAdjacentLocationOf(Queue<Area> q, Area target, HashMap<String, Boolean> hashChk) {
         while (target != null) {
             if(!hashChk.containsKey(target.name)) {
-                q.offer(AreaList.get(target.name));
+                q.offer(AreaMap.get(target.name));
                 hashChk.put(target.name, true);
             }
             target = target.next;
@@ -123,13 +126,13 @@ public class AreaFile {
     }
 
     public void traversalOf(String areaName) {
-        if (!AreaList.containsKey(areaName)) {
+        if (!AreaMap.containsKey(areaName)) {
             System.out.println("Wrong Area");
             return;
         }
         HashMap<String, Boolean> hashChk = new HashMap<>();
         System.out.println("Graph traversal:");
-        DFS(AreaList.get(areaName), hashChk);
+        DFS(AreaMap.get(areaName), hashChk);
     }
 
     private void DFS(Area start, HashMap<String, Boolean> hashChk) {
@@ -137,7 +140,7 @@ public class AreaFile {
         hashChk.put(start.name, true);
         while(start != null) {
             if(!hashChk.containsKey(start.name)) {
-                DFS(AreaList.get(start.name), hashChk);
+                DFS(AreaMap.get(start.name), hashChk);
             }
             start = start.next;
         }
