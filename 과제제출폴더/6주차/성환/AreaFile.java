@@ -1,11 +1,7 @@
-package algorithm_2019.Pa_7_1;
+package algorithm_2019.Pa_8_1;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class AreaFile {
 
@@ -53,6 +49,7 @@ public class AreaFile {
     private void connect(Area header, Area target) {
         target.next = header.next;
         header.next = target;
+        target.superNode = header;
         target.weigh = calDistance(header.latitude, header.longitude, target.latitude, target.longitude);
     }
 
@@ -133,4 +130,90 @@ public class AreaFile {
         }
     }
 
+    private void print() throws IOException {
+        File file = new File("algorithm/src/algorithm_2019/resource/mst.txt");
+        if(!file.exists())
+            file.createNewFile();
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        ArrayList<Area> list = new ArrayList<>(AreaMap.values());
+        list.sort((o1, o2) -> o1.number - o2.number);
+
+        for (int i = 0; i < list.size(); i++) {
+            Area area = list.get(i);
+            bw.write(area.number + " " + area.longitude + " " + area.latitude + " ");
+            Area curr = area.next;
+            String temp = "";
+            int degree = 0;
+            while (curr != null) {
+                if (curr.isMSTNode) {
+                    temp = temp + " " + curr.number;
+                    degree++;
+                }
+                curr = curr.next;
+            }
+            bw.write(degree + temp);
+            bw.newLine();
+            bw.flush();
+        }
+    }
+
+    public void mst() {
+        ArrayList<Area> list = new ArrayList<>();
+        // add all edges to list
+        addAllEdgesToList(list);
+        // sort by weight
+        list.sort((o1, o2) -> Double.compare(o1.weigh, o2.weigh));
+        // make set
+        Node[] set = new Node[Area.size];
+        for (int i = 0; i < set.length; i++)
+            set[i] = new Node(i);
+        // wupc
+        for (Area area : list) {
+            if (!findSetWithPc(area.number, set).equals(findSetWithPc(area.superNode.number, set))) {
+                weightedUnion(area.number, area.superNode.number, set);
+                area.isMSTNode = true;
+                Area otherNode = AreaMap.get(area.name);
+                while (!otherNode.name.equals(area.superNode.name))
+                    otherNode = otherNode.next;
+                otherNode.isMSTNode = true;
+            }
+        }
+        // print to text file
+
+        try {
+            print();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void weightedUnion(int n1, int n2, Node[] set) {
+        Node x = findSetWithPc(n1, set);
+        Node y = findSetWithPc(n2, set);
+        if (x.size > y.size) {
+            set[y.number].number = x.number;
+            x.size += y.size;
+        } else {
+            set[x.number].number = y.number;
+            y.size += x.size;
+        }
+    }
+
+    private Node findSetWithPc(int number, Node[] set) {
+        while (number != set[number].number) {
+            set[number].number = set[set[number].number].number;
+            number = set[number].number;
+        }
+        return set[number];
+    }
+
+    private void addAllEdgesToList(ArrayList<Area> list) {
+        for (Area area : AreaMap.values()) {
+            Area curr = area.next;
+            while (curr != null) {
+                list.add(curr);
+                curr = curr.next;
+            }
+        }
+    }
 }
