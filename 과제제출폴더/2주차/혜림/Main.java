@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 
-public class Main {
+public class Main{
 
 	static int n=0;
 	public static int capacity = 100000;
@@ -66,43 +66,21 @@ public class Main {
 	private void print() {
 
 		for(int i=0;i<n;i++)
-			System.out.println(log[i].toString());
+			System.out.println(i+" "+log[i].toString());
 
 	}
+	
 	public void sort() {
-
-		String sort_command=kb.next();
-		if(sort_command.equals("-t")) {
-
-			for(int i=n-1;i>0;i--) {
-				for(int j=0;j<i;j++) {
-					if((log[j].compareToTime(log[j+1]))==-1) {
-						Log tmp=log[j];
-						log[j]=log[j+1];
-						log[j+1]=tmp;
-					}
-				}
-			}
-			
-			for(int i=0;i<n;i++)
-				System.out.println(log[i].toString());
-
-		}
-		else if(sort_command.equals("-ip")) {
 		
-			for(int i=n-1;i>0;i--) {
-				for(int j=0;j<i;j++) {
-					
-					if(log[j].compareToIP()<log[j+1].compareToIP()){
-						Log tmp=log[j];
-						log[j]=log[j+1];
-						log[j+1]=tmp;
-					}
-				}
-			}
-		}
-		for(int i=0;i<n;i++)
-			System.out.println(log[i].toString());
+		String sort_command=kb.next();
+		if(sort_command.equals("-t")) 
+			Arrays.sort(log,0,n,Log.Comparator_time);
+	
+		else if(sort_command.equals("-ip"))
+			Arrays.sort(log,0,n,Log.Comparator_ip);
+	
+		else
+			System.out.println("error.");
 
 	}
 

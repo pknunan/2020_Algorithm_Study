@@ -21,26 +21,6 @@ public class Times {
 		
 	}
 	
-	public int compareTo(Times other) {
-		
-		if(hour>other.hour)
-			return 1;
-		else if(hour==other.hour) {
-			if(minute>other.minute)
-				return 1;
-			else if(minute==other.minute) {
-				if(second>other.second)
-					return 1;
-				else if(second<other.second)
-					return -1;
-				return 0;
-			}
-			return -1;
-		}
-		return -1;
-
-	}
-	
 	@Override
 	public String toString() {
 		return hour+"½Ã"+minute+"ºÐ"+second+"ÃÊ";

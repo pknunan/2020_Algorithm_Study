@@ -1,6 +1,8 @@
 package pa_2;
 
-public class Log {
+import java.util.Comparator;
+
+public class Log  {
 
 	public String IP;
 	public Date ymd;
@@ -18,44 +20,46 @@ public class Log {
 		this.Status=Status;
 	}
 
-	
-	/*public static Comparator<Log> Comparator_1=new Comparator<Log>() {
+	public static Comparator<Log> Comparator_time=new Comparator<Log>() {
 		public int compare(Log l1, Log l2) {
-			return l1.IP.compareTo(l2.IP);
-		}
-	};
-	
-	public static Comparator<Log> Comparator_2=new Comparator<Log>() {
-		public int compare(Log l1, Log l2) {
-			return l1.ymd.compareTo(l2.ymd);
-		}
-	};
-	*/
-	public int compareToIP() {
-
-		char s='.';
-		String tmp=IP;
-		for(int i=0;i<IP.length();i++) {
-			
-			if(IP.charAt(i)==s) {
-				IP=squuze(IP, s);
+			if(l1.ymd.year>l2.ymd.year)
+				return 1;
+			else if(l1.ymd.year==l2.ymd.year) {
+				if(l1.ymd.monthRank(l1.ymd.month)>l2.ymd.monthRank(l2.ymd.month))
+					return 1;
+				else if(l1.ymd.monthRank(l1.ymd.month)==l2.ymd.monthRank(l2.ymd.month)) {
+					if(l1.ymd.day>l2.ymd.day)
+						return 1;
+					else if(l1.ymd.day==l2.ymd.day) {
+						if(l1.hms.hour>l2.hms.hour)
+							return 1;
+						else if(l1.hms.hour==l2.hms.hour) {
+							if(l1.hms.minute>l2.hms.minute)
+								return 1;
+							else if(l1.hms.minute==l2.hms.minute) {
+								if(l1.hms.second>l2.hms.second)
+									return 1;
+								else if(l1.hms.second==l2.hms.second)
+									return 0;
+							}
+						}
+					}
+				}
 			}
-			
+			return -1;
 		}
-		int ip=Integer.parseInt(IP);
-		IP=tmp;
-		return ip;
-	}
+	};
 
-	static String squuze(String from, char ch) {
-		return from.replaceFirst(String.format("[%c]", ch),"");
-	}
+	public static Comparator<Log> Comparator_ip=new Comparator<Log>() {
+		public int compare(Log l1, Log l2) {
+			return l1.compareToIP(l1, l2);
+		}
+	};
 
-	public int compareToTime(Log l) {
-
-		if(ymd.compareTo(l.ymd)==1)
+	public int compareToIP(Log l1, Log l2) {
+		if(l1.IP.compareTo(l2.IP)>0)
 			return 1;
-		else if(ymd.compareTo(l.ymd)==0)
+		else if(l1.IP.compareTo(l2.IP)==0)
 			return 0;
 		return -1;
 	}
