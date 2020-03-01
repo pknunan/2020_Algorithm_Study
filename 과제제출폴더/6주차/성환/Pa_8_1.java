@@ -1,8 +1,8 @@
-package algorithm_2019.Pa_7_1;
+package algorithm_2019.Pa_8_1;
 
 import java.util.Scanner;
 
-public class Pa_7_1 {
+public class Pa_8_1 {
     public static void main(String[] args) {
         AreaFile alabama = new AreaFile();
         Scanner sc = new Scanner(System.in);
@@ -19,6 +19,9 @@ public class Pa_7_1 {
                     break;
                 case "traversalOf":
                     alabama.traversalOf(sc.nextLine().trim());
+                    break;
+                case "print":
+                    alabama.mst();
                     break;
                 case "exit":
                     break label;
