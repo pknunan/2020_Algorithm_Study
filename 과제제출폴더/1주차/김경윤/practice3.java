@@ -8,7 +8,7 @@ import java.util.Arrays;*/
 public class practice3 {
 	
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		
 		int[] A = new int[1000];
 		int[] B = new int[10000];
@@ -322,5 +322,5 @@ public class practice3 {
 		j=0;
 		for(int i=100000;i>=1;i--)
 			C[j++]=i;
-	}*/
+	}
 }
