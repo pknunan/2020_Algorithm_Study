@@ -151,7 +151,7 @@ public class homework6 {
     public static void delete(BinaryTree<String> tree, String word, int state){
         BinaryTree.Node<String> wordSubTree = find(tree, word, 0);
         if(wordSubTree==null){
-            //if(state==1)
+            if(state==1)
                 System.out.println("Not found.");
             return;
         }
