@@ -5,18 +5,6 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Scanner;
 
-class dict {
-    String word;
-    String Class;
-    String meaning;
-
-    public dict(String word, String Class, String meaning) {
-        this.word = word;
-        this.Class = Class;
-        this.meaning = meaning;
-    }
-}
-
 class BinaryTree<E>{
     protected static class Node<E>{
         protected E word;
@@ -44,16 +32,15 @@ class BinaryTree<E>{
 
 public class homework6 {
     public static void main(String[] args) {
-        ArrayList<dict> dic= new ArrayList<>();
-        fileOpen(dic, "shuffled_dict.txt", 1);
-        BinaryTree<String> tree=newTreeInsert(dic);
+        BinaryTree<String> tree=new BinaryTree<>();
+        fileOpen("shuffled_dict.txt", tree ,1);
         while(true){
-            if(inputSet(dic, tree)==1)
+            if(inputSet(tree)==1)
                 break;
         }
     }
 
-    public static ArrayList<String> fileOpen(ArrayList<dict> dic, String input, int state){
+    public static ArrayList<String> fileOpen(String input, BinaryTree<String> tree, int state){
         ArrayList<String> fileset=new ArrayList<>();
         try {
             String path=homework6.class.getResource("").getPath();
@@ -65,7 +52,7 @@ public class homework6 {
             }
             bufReader.close();
             if(state==1){
-                new_instance(fileset, dic, state);
+                newTreeInsert(fileset, tree, state);
                 return null;
             }
             else
@@ -78,7 +65,7 @@ public class homework6 {
         return null;
     }
 
-    public static int inputSet(ArrayList<dict> dic, BinaryTree<String> tree){
+    public static int inputSet(BinaryTree<String> tree){
         Scanner sc=new Scanner(System.in);
         String[] input_set=new String[2];
         int i=0;
@@ -89,11 +76,11 @@ public class homework6 {
             input_set[i++]=token.nextToken();
         }
         switch (input_set[0]){
-            case "add" : add(tree, dic);return 0;
+            case "add" : add(tree);return 0;
             case "find" : find(tree, input_set[1], 1); return 0;
             case "size" : whatSize(tree); return 0;
             case "delete" : delete(tree, input_set[1], 1); return 0;
-            case "deleteall" : deleteall(dic, tree, input_set[1]); return 0;
+            case "deleteall" : deleteall(tree, input_set[1]); return 0;
             case "exit" : return 1;
         }
         return 0;
@@ -134,7 +121,7 @@ public class homework6 {
         return null;
     }
 
-    public static void add(BinaryTree<String> tree, ArrayList<dict> dic){
+    public static void add(BinaryTree<String> tree){
         Scanner sc= new Scanner(System.in);
         String word, Class, meaning;
         System.out.print("word: ");
@@ -143,7 +130,6 @@ public class homework6 {
         Class=sc.nextLine();
         System.out.print("meaning: ");
         meaning=sc.nextLine();
-        dic.add(new dict(word, Class, meaning));
         BinaryTree.Node<String> newnode= new BinaryTree.Node<>(word, meaning);
         insert(newnode, tree);
     }
@@ -215,14 +201,14 @@ public class homework6 {
         return x;
     }
 
-    public static void deleteall(ArrayList<dict> dic, BinaryTree<String> tree, String fileName) {
-        ArrayList<String> file = fileOpen(dic, fileName, 0);
+    public static void deleteall(BinaryTree<String> tree, String fileName) {
+        ArrayList<String> file = fileOpen(fileName, tree, 0);
         for(int i=0;i<file.size();i++)
             delete(tree, file.get(i), 0);
         System.out.println(file.size()+" words were deleted successfully.");
     }
 
-    public static void new_instance(ArrayList<String> fileset, ArrayList<dict> dic, int state) {
+    public static void newTreeInsert(ArrayList<String> fileset, BinaryTree<String> tree, int state) {
         for(int i=0;i<fileset.size();i++){
             StringTokenizer token=new StringTokenizer(fileset.get(i), "(");
             String word=token.nextToken();
@@ -232,18 +218,9 @@ public class homework6 {
                 meaning=token.nextToken().substring(1);
             else
                 meaning=null;
-            dic.add(new dict(word.substring(0, word.length()-1), Class, meaning));
-        }
-    }
-
-    public static BinaryTree<String> newTreeInsert(ArrayList<dict> dic){
-        BinaryTree<String> tree=new BinaryTree<>();
-       // BinaryTree<String> tree=new BinaryTree<>(new BinaryTree.Node<String>(dic.get(0).word, dic.get(0).meaning));
-        for(int i=0;i<dic.size();i++){
-            BinaryTree.Node<String> new_node=new BinaryTree.Node<>(dic.get(i).word, dic.get(i).meaning);
+            BinaryTree.Node<String> new_node=new BinaryTree.Node<>(word.substring(0, word.length()-1), meaning);
             insert(new_node, tree);
         }
-        return tree;
     }
 
     public static void insert(BinaryTree.Node<String> new_node, BinaryTree<String> tree){
